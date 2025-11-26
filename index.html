@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML, Banco de Dados e Mobile - Arquitetura de Sistemas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <header>
+        <div class="header-container">
+            <div class="logo">🌐 ARQUITETURA WEB-MOBILE</div>
+            <nav>
+                <a href="#intro">Introdução</a>
+                <a href="#html">HTML</a>
+                <a href="#database">Banco de Dados</a>
+                <a href="#mobile">Mobile</a>
+                <a href="#integration">Integração</a>
+                <a href="#examples">Exemplos</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1> HTML, Banco de Dados e Mobile</h1>
+            <p>Como as três camadas funcionam juntas em sistemas reais como Uber Eats e Spotify</p>
+        </div>
+    </section>
+
+    <section id="intro">
+        <div class="container">
+            <h2>📚 Introdução</h2>
+            
+            <p>Quando você usa um aplicativo como Uber Eats ou Spotify, está interagindo com um sistema complexo composto por três componentes principais que trabalham juntos de forma harmônica:</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🖥️</div>
+                    <h3>Front-end (HTML/CSS/JS)</h3>
+                    <p>A interface que você vê e interage. É o que deixa o aplicativo bonito e funcional.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💾</div>
+                    <h3>Banco de Dados</h3>
+                    <p>O coração do sistema. Armazena todas as informações importantes de forma organizada.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3>Aplicativo Mobile</h3>
+                    <p>A porta de entrada. Conecta o usuário ao servidor e sincroniza os dados em tempo real.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>💡 Conceito-chave:</strong> Esses três componentes não funcionam isolados. Eles se comunicam constantemente através de APIs e protocolos de rede para criar uma experiência fluida.
+            </div>
+        </div>
+    </section>
+
+    <section id="html">
+        <div class="container">
+            <h2>🖥️ HTML e o Front-end Web</h2>
+
+            <h3>O que é HTML?</h3>
+            <p>HTML (HyperText Markup Language) é a linguagem usada para criar a estrutura de páginas web. É como o "esqueleto" de um site. Junto com CSS (para estilo) e JavaScript (para interatividade), forma a interface que você vê no navegador.</p>
+
+            <div class="example">
+                <h4>Exemplo: Página de busca do Spotify Web</h4>
+                <p>Quando você acessa <code>spotify.com</code>, o navegador recebe HTML que estrutura:</p>
+                <ul>
+                    <li>Campo de busca de músicas</li>
+                    <li>Lista de resultados</li>
+                    <li>Botões de play/pause</li>
+                    <li>Controles de volume</li>
+                </ul>
+            </div>
+
+            <h3>Como Funciona o Carregamento</h3>
+
+            <div class="diagram">
+                <div class="flow-diagram">
+                    <div class="flow-box">1. Navegador faz requisição</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">2. Servidor envia HTML</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">3. Browser renderiza página</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">4. JavaScript ativa interatividade</div>
+                </div>
+            </div>
+
+            <h3>Estrutura Semântica Moderna</h3>
+            <p>O HTML moderno usa elementos semânticos que melhoram a experiência:</p>
+
+            <pre><code>&lt;header&gt; - Cabeçalho com navegação
+&lt;nav&gt; - Menu de navegação
+&lt;main&gt; - Conteúdo principal
+&lt;section&gt; - Seções temáticas
+&lt;article&gt; - Conteúdo independente
+&lt;footer&gt; - Rodapé</code></pre>
+
+            <div class="highlight">
+                <strong>🎯 No contexto do Uber Eats Web:</strong> O HTML estrutura a página de pedidos, exibindo restaurantes, cardápio e checkout. Quando você clica em um restaurante, JavaScript envia uma requisição ao servidor que busca os dados no banco de dados.
+            </div>
+        </div>
+    </section>
+
+    <section id="database">
+        <div class="container">
+            <h2>💾 Banco de Dados</h2>
+
+            <h3>O que é um Banco de Dados?</h3>
+            <p>Um banco de dados é um sistema organizado para armazenar, gerenciar e recuperar grandes volumes de dados. Pense nele como um arquivo digital super potente que permite buscas instantâneas.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h4>💡 Por que é importante?</h4>
+                    <ul>
+                        <li>Armazena dados permanentemente</li>
+                        <li>Permite recuperação rápida</li>
+                        <li>Garante dados consistentes</li>
+                        <li>Escalável (cresce conforme necessário)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🏢 Tipos principais</h4>
+                    <ul>
+                        <li><strong>SQL:</strong> Dados estruturados (PostgreSQL, MySQL)</li>
+                        <li><strong>NoSQL:</strong> Dados flexíveis (MongoDB, Firebase)</li>
+                        <li><strong>Cache:</strong> Dados rápidos (Redis)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Estrutura de um Banco de Dados</h3>
+            <p>Usaremos o exemplo do Uber Eats para ilustrar:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tabela</th>
+                        <th>Função</th>
+                        <th>Dados Armazenados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Users</strong></td>
+                        <td>Informações de usuários</td>
+                        <td>ID, Nome, Email, Senha, Localização</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restaurants</strong></td>
+                        <td>Dados dos restaurantes</td>
+                        <td>ID, Nome, Endereço, Horário, Rating</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Menu Items</strong></td>
+                        <td>Cardápio do restaurante</td>
+                        <td>ID, Nome, Preço, Descrição, Restaurante_ID</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Orders</strong></td>
+                        <td>Pedidos realizados</td>
+                        <td>ID, User_ID, Restaurante_ID, Total, Status, Data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deliveries</strong></td>
+                        <td>Informações de entrega</td>
+                        <td>ID, Order_ID, Entregador_ID, Status, Localização</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Como Dados São Armazenados e Recuperados</h3>
+
+            <div class="example">
+                <h4>Fluxo: Quando você busca "Pizzarias"</h4>
+                <ol>
+                    <li>Front-end envia busca via API</li>
+                    <li>Servidor recebe requisição</li>
+                    <li>Back-end executa query no banco: <code>SELECT * FROM restaurants WHERE category = 'pizzaria'</code></li>
+                    <li>Banco retorna os resultados</li>
+                    <li>Servidor formata dados em JSON</li>
+                    <li>Front-end exibe resultados na tela</li>
+                </ol>
+            </div>
+
+            <div class="highlight">
+                <strong>🔐 Segurança:</strong> O banco de dados NUNCA se comunica diretamente com o front-end. Sempre passa pelo back-end, que funciona como um filtro de segurança.
+            </div>
+        </div>
+    </section>
+
+    <section id="mobile">
+        <div class="container">
+            <h2>📱 Aplicativos Mobile</h2>
+
+            <h3>O que são e Como Funcionam?</h3>
+            <p>Aplicativos mobile (iOS/Android) são programas instalados em seu telefone que se comunicam com servidores remotos via internet. Diferente de um website, o app mobile oferece:</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h4>✅ Vantagens</h4>
+                    <ul>
+                        <li>Acesso offline (cache local)</li>
+                        <li>Notificações push</li>
+                        <li>Acesso a hardware (câmera, GPS)</li>
+                        <li>Performance otimizada</li>
+                        <li>Experiência nativa</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🏗️ Arquitetura</h4>
+                    <ul>
+                        <li>Front-end (UI/UX no dispositivo)</li>
+                        <li>Local Storage (SQLite)</li>
+                        <li>HTTP/REST (comunicação com servidor)</li>
+                        <li>APIs (endpoints)</li>
+                        <li>Sincronização automática</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Comunicação com o Servidor</h3>
+
+            <div class="diagram">
+                <div class="flow-diagram">
+                    <div class="flow-box">App Mobile</div>
+                    <div class="flow-arrow">HTTP/JSON</div>
+                    <div class="flow-box">API Backend</div>
+                    <div class="flow-arrow">SQL Query</div>
+                    <div class="flow-box">Banco de Dados</div>
+                </div>
+            </div>
+
+            <div class="example">
+                <h4>Exemplo: App Spotify no seu celular</h4>
+                <ol>
+                    <li>Você procura a música "Bohemian Rhapsody"</li>
+                    <li>App envia requisição: <code>GET /api/search?q=Bohemian%20Rhapsody</code></li>
+                    <li>Servidor recebe, busca no banco de dados</li>
+                    <li>Retorna JSON com músicas encontradas</li>
+                    <li>App armazena em cache local (SQLite)</li>
+                    <li>Tela atualiza com os resultados</li>
+                    <li>Você clica em "Play" → servidor inicia streaming</li>
+                </ol>
+            </div>
+
+            <h3>Padrão de Requisição/Resposta</h3>
+
+            <h4>Requisição (Request):</h4>
+            <pre><code>{
+  "metodo": "POST",
+  "url": "https://api.ubereats.com/orders",
+  "dados": {
+    "restaurante_id": 123,
+    "itens": ["Hamburguer", "Refrigerante"],
+    "endereco": "Rua das Flores, 42"
+  }
+}</code></pre>
+
+            <h4>Resposta (Response):</h4>
+            <pre><code>{
+  "sucesso": true,
+  "pedido_id": 9876,
+  "status": "confirmado",
+  "tempo_entrega": 35,
+  "total": 45.90
+}</code></pre>
+
+            <div class="highlight">
+                <strong>🔄 Sincronização em Tempo Real:</strong> Apps modernos como Uber Eats sincronizam dados continuamente. O status de entrega é atualizado em tempo real através de conexões WebSocket ou polling.
+            </div>
+        </div>
+    </section>
+
+    <section id="integration">
+        <div class="container">
+            <h2>🔗 Integração Completa</h2>
+
+            <h3>Como os Três Componentes Trabalham Juntos</h3>
+
+            <div class="diagram">
+                <h4 style="text-align: center; margin-bottom: var(--spacing-lg);">Arquitetura Completa de um Sistema</h4>
+                <div style="background: white; padding: var(--spacing-lg); border-radius: var(--radius-lg);">
+                    <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-lg); background: #e0f2fe; border-left: 4px solid #0284c7; border-radius: var(--radius-md);">
+                        <strong>CAMADA 1: APRESENTAÇÃO (Front-end)</strong>
+                        <p style="margin: var(--spacing-sm) 0 0 0;">Website (HTML/CSS/JS) + App Mobile (iOS/Android)</p>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: var(--spacing-lg);">
+                        <span style="font-size: 1.5rem; color: var(--color-secondary);">↕️</span>
+                        <p style="margin: var(--spacing-sm) 0;">Comunicação via API REST / JSON</p>
+                    </div>
+
+                    <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-lg); background: #fef08a; border-left: 4px solid #ca8a04; border-radius: var(--radius-md);">
+                        <strong>CAMADA 2: LÓGICA (Back-end)</strong>
+                        <p style="margin: var(--spacing-sm) 0 0 0;">Node.js, Python, Java - Processa requisições, validações e regras de negócio</p>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: var(--spacing-lg);">
+                        <span style="font-size: 1.5rem; color: var(--color-secondary);">↕️</span>
+                        <p style="margin: var(--spacing-sm) 0;">Consultas SQL / NoSQL</p>
+                    </div>
+
+                    <div style="padding: var(--spacing-lg); background: #dcfce7; border-left: 4px solid #16a34a; border-radius: var(--radius-md);">
+                        <strong>CAMADA 3: DADOS (Banco de Dados)</strong>
+                        <p style="margin: var(--spacing-sm) 0 0 0;">PostgreSQL, MongoDB - Armazena informações de forma permanente e segura</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Fluxo de Dados Completo</h3>
+
+            <div style="margin: var(--spacing-xl) 0;">
+                <h4>Exemplo: Fazer um pedido no Uber Eats</h4>
+
+                <ol style="background: var(--color-light); padding: var(--spacing-lg); border-radius: var(--radius-lg);">
+                    <li><strong>Usuário interage com App:</strong> Seleciona 2 hambúrgueres e clica "Confirmar Pedido"</li>
+                    <li><strong>Front-end processa:</strong> Valida dados localmente, mostra loading</li>
+                    <li><strong>App envia requisição HTTP:</strong>
+                        <pre><code>POST https://api.ubereats.com/v1/orders
+Authorization: Bearer token_do_usuario
+{
+  "restaurant_id": 456,
+  "items": [
+    {"item_id": 1, "quantity": 2},
+  ],
+  "delivery_address": "Rua X, 123"
+}</code></pre>
+                    </li>
+                    <li><strong>Back-end recebe e valida:</strong> Verifica se restaurante está aberto, se itens existem, se endereço é válido</li>
+                    <li><strong>Back-end consulta Banco de Dados:</strong>
+                        <ul style="margin-top: var(--spacing-sm);">
+                            <li>Busca dados do usuário em "users"</li>
+                            <li>Busca preços em "menu_items"</li>
+                            <li>Calcula total com taxas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Back-end cria novo registro:</strong> Insere pedido na tabela "orders" com status "confirmado"</li>
+                    <li><strong>Back-end responde:</strong>
+                        <pre><code>{
+  "order_id": 789,
+  "status": "confirmed",
+  "estimated_time": 35,
+  "total": 48.90,
+  "order_items": [...]
+}</code></pre>
+                    </li>
+                    <li><strong>App mobile recebe resposta:</strong> Salva em cache local, para funcionar offline se necessário</li>
+                    <li><strong>Front-end atualiza UI:</strong> Mostra "Pedido Confirmado" e começa polling para atualizações de status</li>
+                    <li><strong>Sincronização contínua:</strong> App consulta status do pedido a cada 5 segundos até entrega</li>
+                </ol>
+            </div>
+
+            <div class="highlight">
+                <strong>⚡ Princípio de Design:</strong> Cada camada tem responsabilidades bem definidas. Front-end não se comunica diretamente com banco de dados. Back-end é o intermediário seguro.
+            </div>
+
+            <h3>Tecnologias Comuns em Sistemas Reais</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Camada</th>
+                        <th>Uber Eats</th>
+                        <th>Spotify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Front-end Web</strong></td>
+                        <td>React.js</td>
+                        <td>React.js, Vue.js</td>
+                    </tr>
+                    <tr>
+                        <td><strong>App Mobile</strong></td>
+                        <td>React Native</td>
+                        <td>Swift (iOS), Kotlin (Android)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Back-end</strong></td>
+                        <td>Node.js + Express</td>
+                        <td>Java, Scala, Python</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Banco Dados</strong></td>
+                        <td>PostgreSQL, Redis</td>
+                        <td>PostgreSQL, Cassandra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Autenticação</strong></td>
+                        <td>OAuth 2.0</td>
+                        <td>OAuth 2.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>📊 Casos Reais: Uber Eats e Spotify</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'ubereats')">🍔 Uber Eats</button>
+                <button class="tab-btn" onclick="switchTab(event, 'spotify')">🎵 Spotify</button>
+            </div>
+
+            <div id="ubereats" class="tab-content active">
+                <h3>Uber Eats - Arquitetura Completa</h3>
+
+                <div class="card">
+                    <h4>🎯 O que faz?</h4>
+                    <p>Conecta usuários famintos com restaurantes, permitindo pedidos com entrega rápida.</p>
+                </div>
+
+                <div class="card">
+                    <h4>📱 Funcionalidades Chave</h4>
+                    <ul>
+                        <li>Buscar restaurantes por localização</li>
+                        <li>Ver cardápio em tempo real</li>
+                        <li>Fazer pedidos com pagamento online</li>
+                        <li>Rastrear entrega ao vivo (mapa GPS)</li>
+                        <li>Avaliações e ratings</li>
+                        <li>Histórico de pedidos sincronizado</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🗄️ Estrutura de Dados (Simplificada)</h4>
+                    <pre><code>USERS
+├─ ID, Nome, Email, Telefone
+├─ Endereço, Localização (latitude, longitude)
+└─ Pagamentos
+
+RESTAURANTS
+├─ ID, Nome, Tipo de comida
+├─ Endereço, Horário de funcionamento
+├─ Rating, Tempo de entrega
+└─ Status (aberto/fechado)
+
+MENU_ITEMS
+├─ ID, Nome, Descrição
+├─ Preço, Categoria
+├─ Restaurant_ID
+└─ Disponibilidade
+
+ORDERS
+├─ ID, User_ID, Restaurant_ID
+├─ Items (arrays de items)
+├─ Status, Total
+├─ Timestamp, Endereço de entrega
+└─ Entregador_ID
+
+DELIVERIES
+├─ ID, Order_ID, Entregador_ID
+├─ Status (recebendo, a caminho, entregue)
+├─ Localização atual (GPS)
+└─ ETA (tempo estimado)
+
+PAYMENTS
+├─ ID, User_ID, Método
+├─ Valor, Status, Timestamp
+└─ Transaction_ID</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Fluxo: Do pedido à entrega</h4>
+                    <ol>
+                        <li><strong>Busca:</strong> App consulta DB → Lista restaurantes abertos próximos</li>
+                        <li><strong>Seleção:</strong> User escolhe restaurante → App carrega menu do DB</li>
+                        <li><strong>Carrinho:</strong> Items são somados localmente (cache)</li>
+                        <li><strong>Checkout:</strong> App envia pedido → Backend processa pagamento</li>
+                        <li><strong>Confirmação:</strong> DB cria novo pedido, alerta restaurante</li>
+                        <li><strong>Rastreamento:</strong> App faz polling a cada 3-5 segundos → Status atualiza</li>
+                        <li><strong>Entregador:</strong> Localização atualizada em tempo real via GPS</li>
+                        <li><strong>Conclusão:</strong> Pedido marcado como entregue, sincroniza histórico</li>
+                    </ol>
+                </div>
+
+                <div class="highlight">
+                    <strong>🚀 Escalabilidade:</strong> Uber Eats processa milhões de pedidos simultâneos. Usa múltiplos servidores, cache Redis, e réplicas de banco de dados distribuídas em vários data centers.
+                </div>
+            </div>
+
+            <div id="spotify" class="tab-content">
+                <h3>Spotify - Arquitetura Completa</h3>
+
+                <div class="card">
+                    <h4>🎯 O que faz?</h4>
+                    <p>Plataforma de streaming de música que sincroniza sua experiência entre todos os dispositivos.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🎵 Funcionalidades Chave</h4>
+                    <ul>
+                        <li>Buscar música por artista/album/playlist</li>
+                        <li>Reprodução em qualidade variável (dados móveis vs WiFi)</li>
+                        <li>Playlists personalizadas e colaborativas</li>
+                        <li>Sincronização entre dispositivos</li>
+                        <li>Recomendações baseadas em IA</li>
+                        <li>Download offline com limite</li>
+                        <li>Histórico de audição</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🗄️ Estrutura de Dados (Simplificada)</h4>
+                    <pre><code>USERS
+├─ ID, Username, Email
+├─ Plano (free/premium)
+├─ Preferências de audio
+└─ Dispositivos conectados
+
+ARTISTS
+├─ ID, Nome, Gênero
+├─ Bio, Imagem
+└─ Seguidores
+
+ALBUMS
+├─ ID, Nome, Artist_ID
+├─ Capa, Data de lançamento
+└─ Tracks (FK)
+
+TRACKS
+├─ ID, Nome, Album_ID, Artist_ID
+├─ Duração, Bitrate disponível
+├─ Arquivo de áudio (URL)
+└─ Stream count
+
+PLAYLISTS
+├─ ID, User_ID (criador)
+├─ Nome, Descrição
+├─ Tracks (array de Track_ID)
+├─ Colaboradores
+└─ Público/Privado
+
+USER_PLAYBACK
+├─ ID, User_ID, Track_ID
+├─ Posição (segundos)
+├─ Dispositivo (web/mobile/desktop)
+├─ Timestamp
+└─ Status (playing/paused)
+
+RECOMMENDATIONS
+├─ ID, User_ID, Track_ID
+├─ Score (0-100)
+├─ Motivo (similar artist, liked genre)
+└─ Data</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Fluxo: Do play à sincronização</h4>
+                    <ol>
+                        <li><strong>Web Page:</strong> Browser HTML carrega player Spotify</li>
+                        <li><strong>JavaScript:</strong> Detecta OAuth token válido, carrega playlists do usuário</li>
+                        <li><strong>API Call:</strong> <code>GET /v1/me/playlists</code> → Backend consulta DB</li>
+                        <li><strong>Resposta:</strong> JSON com playlists + metadados volta para browser</li>
+                        <li><strong>Seleção:</strong> User clica em música, JS envia: <code>POST /v1/me/player/play</code></li>
+                        <li><strong>Backend:</strong> Valida licença, seleciona servidor CDN mais próximo</li>
+                        <li><strong>Streaming:</strong> URL do áudio é enviado → Browser inicia reprodução</li>
+                        <li><strong>Sincronização:</strong> Cada 5 segundos, app envia posição de reprodução ao DB</li>
+                        <li><strong>Multi-dispositivo:</strong> Se você abrir Spotify no celular, a posição já está sincronizada</li>
+                        <li><strong>Histórico:</strong> Track é registrado em `user_playback` para recomendações futuras</li>
+                    </ol>
+                </div>
+
+                <div class="highlight">
+                    <strong>💡 Infraestrutura Global:</strong> Spotify usa CDNs (redes de distribuição) em centenas de locais. Quando você toca uma música, o áudio vem do servidor mais próximo, reduzindo latência e buffering.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - HTML, Banco de Dados e Aplicativos Mobile</p>
+            <p>Exemplos: <strong>Uber Eats</strong> | <strong>Spotify</strong></p>
+            <p>Desenvolvido por André Nicolay e Gustavo Oliveira.</p>
+        </div>
+    </footer>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
